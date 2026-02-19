@@ -2,7 +2,7 @@
 # Platform: LeetCode
 # Difficulty: Easy
 # Topic: Strings, Sliding Window
-# Link: https://leetcode.com/problems/count-binary-substrings/
+# Link: https://leetcode.com/problems/count-binary-substrings/?envType=daily-question&envId=2026-02-19
 # Time Complexity: O(n)
 # Space Complexity: O(1)
 
