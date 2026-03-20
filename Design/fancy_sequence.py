@@ -1,0 +1,35 @@
+# Problem: Fancy Sequence
+# Platform: LeetCode
+# Difficulty: Hard
+# Topic: Design, Math, Modular Arithmetic
+# Link: https://leetcode.com/problems/fancy-sequence/
+# Time Complexity: O(1) per operation
+# Space Complexity: O(n)
+
+class Fancy:
+    def __init__(self):
+        self.mod = 10**9 + 7
+        self.v = []
+        self.a = [1]  # multiplier history
+        self.b = [0]  # increment history
+    # fast exponentiation
+    def quickmul(self, x: int, y: int) -> int:
+        return pow(x, y, self.mod)
+    # modular inverse using Fermat’s theorem
+    def inv(self, x: int) -> int:
+        return self.quickmul(x, self.mod - 2)
+    def append(self, val: int) -> None:
+        self.v.append(val)
+        self.a.append(self.a[-1])
+        self.b.append(self.b[-1])
+    def addAll(self, inc: int) -> None:
+        self.b[-1] = (self.b[-1] + inc) % self.mod
+    def multAll(self, m: int) -> None:
+        self.a[-1] = self.a[-1] * m % self.mod
+        self.b[-1] = self.b[-1] * m % self.mod
+    def getIndex(self, idx: int) -> int:
+        if idx >= len(self.v):
+            return -1
+        ao = self.inv(self.a[idx]) * self.a[-1] % self.mod
+        bo = (self.b[-1] - self.b[idx] * ao) % self.mod
+        return (ao * self.v[idx] + bo) % self.mod
